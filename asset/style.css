@@ -1,0 +1,322 @@
+*{
+	padding: 0;
+	border:none;
+	margin:0;
+	font-family: 'Saira', sans-serif;
+}
+.container {
+    width: 1280px;
+    margin: auto;
+    padding-top: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h1 > span {
+    color: red;
+}
+
+.logo > h1 {
+    width: 138px;
+    height: 43px;
+    background: black;
+    color: white;
+    text-align: center;
+    padding-top: 0px;
+    box-sizing: border-box;
+    font-size: 37px;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.search {
+    width: 375px;
+    height: 39px;
+    margin-top: -5px;
+}
+
+.search > form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    border: 2px solid #8080806e;
+    border-radius: 3px;
+}
+
+.f-search {
+    width: 330px;
+    height: 100%;
+    padding: 3px 12px;
+    box-sizing: border-box;
+}
+
+input[type="text"] {
+    width: 300px;
+    height: 30px;
+    /* display: inline-block; */
+    outline: none;
+}
+
+.f-search span {
+    width: calc(100% - 10px);
+}
+
+form.searchGr span {}
+
+form.searchGr span {
+    width: calc(100% - 330px);
+    height: 100%;
+    background-color: #D9D9D9;
+    position: relative;
+}
+
+
+input[type="submit"] {
+    width: 100%;
+    height: 100%;
+}
+span > input {
+    background-image: url('../img/icon_search.png');
+    background-repeat: no-repeat;
+    background-position: center;
+}
+input[type="submit"]:hover {
+    cursor: pointer;
+}
+.soligan {
+    text-transform: uppercase;
+}
+
+.soligan span {
+    color: red;
+}
+h2 {}
+
+.login a {
+    background-color: #DE2600;
+    color: white;
+    width: 130px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 28px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.login button {
+    padding: 5px 30px;
+    font-weight: bold;
+    color: #00000096;
+}
+span.flag{
+	background-image: url('../img/icon_flag.png');
+	width: 30px;
+	height: 20px;
+	display: inline-block;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.soligan > h2 {
+    font-weight: 600;
+}
+button:hover {
+    cursor: pointer;
+    background: #80808073;
+    color: blue;
+}
+.top_search li {
+    display: inline;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+.categories {
+    display: inline;
+}
+select#select {
+    background: black;
+    color: white;
+}
+
+.top_search ul li {
+    background: #D9D9D9;
+}
+
+li a {
+    color: black;
+}
+.top_search ul li:first-child {
+    background: black;
+}
+.top_search ul li.top_6 {
+    background: #DE2600;
+}
+
+.top_search ul li.top_6 a {
+    color: #fff1f1;
+}
+.top_search ul li > a {
+    padding: 0 4px;
+    text-align: center;
+}
+.top_search ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+nav.navigation {
+    margin-bottom: 10px;
+}
+
+.list_data  button {
+    height: 35px;
+    background: black;
+    color: white;
+    padding: 0 16px;
+}
+
+button#home {
+    width: 75px;
+    height: 35px;
+    background: black;
+    color: white;
+}
+.list_data {
+    display: flex;
+    justify-content: space-between;
+    /* border-bottom: 1px solid black; */
+    margin-bottom: 10px;
+}
+
+.totalTeacher {
+    color: black;
+    font-weight: 500;
+    width: calc(100% - 369px);
+    border-bottom: 1px solid black;
+    display: flex;
+    justify-content: flex-end;
+}
+.home_data {
+    float: left;
+    width: 314px;
+    height: 240px;
+    margin-right: 8px;
+    margin-bottom: 5px;
+}
+
+.info img {
+    width: 100%;
+}
+
+.info {
+    text-align: center;
+}
+
+p.totalLike {
+    position: absolute;
+    right: 10px;
+    bottom: 0px;
+}
+
+p.totalLike {
+    font-size: 13px;
+    color: gray;
+}
+
+.info {
+    position: relative;
+}
+.info img {
+    border: 1px solid;
+}
+button{
+	outline: none;
+}
+.buttonActive{
+	background: white !important;
+	color: black !important;
+	border: 1px solid black !important;
+	border-bottom: transparent !important;
+}
+i.fas.fa-graduation-cap {
+    position: relative;
+    top: 4px;
+    right: 5px;
+}
+
+.totalTeacher span {
+    margin-right: 4px;
+}
+div div.home_data:nth-child(4n) {
+    margin-right: 0px;
+}
+button#sub {
+    padding: 0 15px;
+}
+i.fas.fa-heart {
+    color: #F25268;
+}
+.clear{
+	clear: both;
+}
+.pagination ul {
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    list-style: none;
+}
+
+.pagination ul li {
+    border: 1px solid #80808085;
+    width: 22px;
+    margin-left: 10px;
+    text-align: center;
+}
+
+.pagination ul li:last-child {
+    border: none;
+    width: auto;
+    border-bottom: 1px solid;
+    font-weight: 500;
+}
+.pagination ul li:last-child:hover {
+	background: white;
+    color: black;
+    width: auto;
+	
+}
+.pagination ul li:last-child:hover a{
+	color: gray;
+	
+}
+.pagination ul li:hover {
+    background: #676565;
+    color: white;
+    cursor: pointer;
+}
+.pagination ul li:hover a{
+	color: white;
+}
+footer {
+    width: 100%;
+    height: 180px;
+    margin-top: 50px;
+}
+.pagination {
+    border-top: 1px solid #80808045;
+    padding-top: 50px;
+    margin-top: 50px;
+}
+.pagination ul li a {
+    width: 100%;
+}
