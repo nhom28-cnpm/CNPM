@@ -1,6 +1,8 @@
 <?php
-class home {
+class home extends controller {
 	public function index() {
-		echo "wellcome";
+
+		$this->loadview('home');
+
 	}
 }
