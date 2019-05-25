@@ -7,6 +7,7 @@ $autoload = [
 	'controller',
 	'helper',
 	'validation',
+	'pagination'
 ];
 
 $autoloadModels = [
@@ -15,6 +16,8 @@ $autoloadModels = [
 	// 'tag',
 	// 'postCollection',
 	// 'post',
+	'modelGiangvien',
+	'modelDanhsachtukhoa',
 ];
 
 ?>

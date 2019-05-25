@@ -11,6 +11,7 @@ class database {
 	private $username     = null;
 	private $password     = null;
 	private $databaseName = null;
+	private $charset = 'utf8';
 
 	private $table = '';
 
@@ -31,7 +32,7 @@ class database {
 			$this->password,
 			$this->databaseName
 		);
-
+		mysqli_set_charset($this->connection, $this->charset);
 		if ($this->connection->connect_error){
 			echo 'Không the ket noi csdl';
 			exit();
@@ -49,7 +50,6 @@ class database {
 		$questionMarks = substr($questionMarks, 0, -1);
 
 		$sql = "INSERT INTO ".$this->table."($fields) VALUES($questionMarks)";
-
 		$types = str_repeat('s', count($data));
 		$values = array_values($data);
 
@@ -59,7 +59,17 @@ class database {
 
 		$this->reset();
 	}
-
+	public function insert_new($table = '', $data)
+    {
+        $keys = '';
+        $values = '';
+        foreach ($data as $key => $value) {
+            $keys .= ',' . $key;
+            $values .= ',"' . mysqli_real_escape_string($this->connection, $value) . '"';
+        }
+		$sql = 'INSERT INTO ' . $table . '(' . trim($keys, ',') . ') VALUES (' . trim($values, ',') . ')';
+        return mysqli_query($this->connection, $sql);
+    }
 	public function getSingle($id){
 		$sql = "SELECT * FROM ".$this->table." WHERE id=?";
 		$statment = $this->connection->prepare($sql);
@@ -213,9 +223,39 @@ class database {
 		$this->table = '';
 	}
 
-	// Ham update
+    public function query($sql = '')
+    {
+        if ($result = mysqli_query($this->connection, $sql)) {
+                if ($result->num_rows > 0) {
+                    while ($row = mysqli_fetch_object($result)) {
+                        $data[] = $row;
+                    }
+                    mysqli_free_result($result);
+                    return $data;
+                } else
+                    return false;
+            } else
+            return false;
+	}
+	public function update_new($table = '', $data = [], $where = [])
+    {
+        $SET = '';
+        foreach ($data as $key => $value) {
+            $SET .= "$key = '$value',";
+        }
+        $SET = rtrim($SET, ', ');
 
-	// ham delete
+        foreach ($where as $id => $idValue) { }
+        $sql = "UPDATE $table SET $SET WHERE $id = $idValue";
+        if (mysqli_query($this->connection, $sql)) {
+            return true;
+            
+        }
+        else{
+            echo " dm";
+        }
+        return false;
+    }
 
 }
 

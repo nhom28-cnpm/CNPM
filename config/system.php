@@ -5,7 +5,7 @@ $config = [
 		'host_name' => 'localhost',
 		'user_name' => 'root',
 		'password' => '',
-		'database_name' => 'cnpm',
+		'database_name' => 'cnpm_qlsv',
 	],
 
 ];
