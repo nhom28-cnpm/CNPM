@@ -9,8 +9,8 @@ class pagination {
 	protected $totalPage   = 0;
 	protected $cssId       = '';
 
-	public function __construct( $url='',$totalRows = 100, $rowsPerPage = 10){
-	    $this->url         = $url;
+	public function __construct($url, $totalRows, $rowsPerPage){
+		$this->url         = $url;
 		$this->totalRows   = $totalRows;
 		$this->rowsPerPage = $rowsPerPage;
 		$this->currentPage = isset($_GET['page']) ? intval($_GET['page']) : 1;
@@ -19,11 +19,13 @@ class pagination {
 
 	public function createPageLinks(){
 
-		$html = '<ul>';
+		$html = '<ul class="pagination">';
+
+		if ($this->currentPage > 1){
+			$html .= '<li><a href="'.$this->url.'&page='.($this->currentPage - 1).'">Trang trước</a></li>';
+		}
+
 		// Loop page
-		if($this->totalPage == 1){
-			return $html = '';
-		}	
 		for ($i = 1; $i <= $this->totalPage; $i++){
 			if ($this->currentPage == $i){
 				$html .= '<li><span>'.$i.'</span></li>';
@@ -35,7 +37,7 @@ class pagination {
 		}
 
 		if ($this->currentPage < $this->totalPage){
-			$html .= '<li><a href="'.$this->url.'&page='.($this->currentPage + 1).'">Next</a></li>';
+			$html .= '<li><a href="'.$this->url.'&page='.($this->currentPage + 1).'">Trang sau</a></li>';
 		}
 
 		return $html;
