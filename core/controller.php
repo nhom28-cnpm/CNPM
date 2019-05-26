@@ -7,7 +7,7 @@ class controller {
 		foreach($data as $key => $value){
 			$this->{$key} = $value;
 		}
-
+	
 		require('view/'.$viewName.'.php');
 	}
 
