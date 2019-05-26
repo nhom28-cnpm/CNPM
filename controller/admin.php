@@ -4,9 +4,7 @@ class admin extends controller {
 
 	public function index(){
 		global $database, $session;
-
 		$user = new user();
-
 		$errors = [];
 
 		if (input::has('login')){
@@ -34,11 +32,7 @@ class admin extends controller {
 		->paginate(5)
 		->get();
 
-		$paging = new pagination(
-			helper::urlPaginate('admin', 'dashboard'),
-			$PostCollection->totalRows(),
-			5
-		);
+
 
 		$this->loadView(
 			'dashboard',
@@ -46,7 +40,7 @@ class admin extends controller {
 				'user' => $user,
 				'posts' => $posts,
 				'khoas' => khoa::getAll(),
-				'pages' => $paging->createPageLinks()
+				
 			]
 		);
 	
@@ -79,18 +73,12 @@ class admin extends controller {
 		->paginate(5)
 		->get();
 
-			$paging = new pagination(
-			helper::urlPaginate('admin', 'quanligv'),
-			$GiaovienCollection->totalRows(),
-			5
-		);
 
 		$this->loadView(
 			'quanligv',
 			[
 				//'user' => $user,
 				'gvs' => $gvs,
-				'pages' => $paging->createPageLinks(),
 				'khoas' => khoa::getAll()
 			]
 		);

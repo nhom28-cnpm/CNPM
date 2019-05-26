@@ -11,13 +11,19 @@ $autoload = [
 ];
 
 $autoloadModels = [
-	// 'user',
-	// 'category',
-	// 'tag',
-	// 'postCollection',
-	// 'post',
 	'modelGiangvien',
 	'modelDanhsachtukhoa',
+	'Post',
+	'giaovien',
+	'khoa',
+	'PostCollection',
+	'GiaovienCollection',
+	'DiemCollection',
+	'diem',
+	'thamgiahocphan',
+	'user',
+	'hocphan',
+
 ];
 
 ?>

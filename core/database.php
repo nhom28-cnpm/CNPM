@@ -96,17 +96,29 @@ class database {
 			$whereConditions = array_values($where);
 		}
 		$sql .= ' LIMIT ? OFFSET ?';
-
 		$statment = $this->connection->prepare($sql);
 		if (count($where) > 0){
 			$params = array_merge($whereConditions, [$limit, $offset]);
 			$statment->bind_param(str_repeat('s', count($params)), ...$params);
 		}
 		else {
-		$statment->bind_param('iii',$whereConditions, $limit, $offset);
+		$statment->bind_param('ii', $limit, $offset);
 		}
 		$statment->execute();
 
+		$result = $statment->get_result();
+		$returnData = [];
+		while ($row = $result->fetch_object()) {
+			$returnData[] = $row;
+		}
+
+		$this->reset();
+		return $returnData;
+	}
+	public function getAll(){
+		$sql = 'SELECT * FROM '.$this->table;
+		$statment = $this->connection->prepare($sql);
+		$statment->execute();
 		$result = $statment->get_result();
 		$returnData = [];
 
@@ -117,7 +129,6 @@ class database {
 		$this->reset();
 		return $returnData;
 	}
-
 	public function totalRows($where = []){
 
 		$sql = "SELECT count(*) AS total FROM ".$this->table;
@@ -258,5 +269,3 @@ class database {
     }
 
 }
-
-?>
