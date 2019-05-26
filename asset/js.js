@@ -1,11 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     var teacher = document.querySelector('#select');
-    if (typeof(teacher != 'undefined')) {
-        teacher.onchange = function() {
-            console.log('ok');
-            this.form.submit();
-        }
+
+    teacher.onchange = function() {
+        console.log('ok');
+        this.form.submit();
     }
     var button = document.querySelectorAll('.list_data button');
     for (var i = 0; i < button.length; i++) {

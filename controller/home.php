@@ -57,6 +57,6 @@ class home extends controller
 		$url = helper::getUrl('home', 'index');
 		$pagination 	= new pagination($url,$totalGV, $limit);
 		$pagination 	= $pagination->createPageLinks();
-		$this->loadView('search_result',['related' => $related,'soluong' => $totalGV,'topKeywords' => $topKeywords, 'pagination' => $pagination, 'listgv' => $listgv]);
+	$this->loadView('search_result',['related' => $related,'soluong' => $totalGV,'topKeywords' => $topKeywords, 'pagination' => $pagination, 'listgv' => $listgv]);
 	}
 }

@@ -135,6 +135,155 @@
         .pagination_top ul li:hover a {
             color: white;
         }
+
+        /* Set a style for all buttons */
+
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .cancel-container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 40%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+        .group-ip>input {
+            border: 1px solid black;
+            width: 150px;
+            height: 30px;
+            margin-left: 30px;
+            padding-left: 10px;
+        }
+
+        .group-ip {
+            margin-left: 20px;
+            margin-bottom: 6px;
+        }
+
+        input[type="password"] {
+            position: relative;
+            left: 3px;
+        }
+
+        input#login {
+            width: 101px;
+            margin-left: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000c7;
+            margin: 10px 0 20px 15px;
+        }
     </style>
 </head>
 
@@ -165,10 +314,39 @@
                 </h2>
             </div>
             <div class="login">
-                <a href="">Register</a>
-                <button>Login</button>
-                <span class="flag"></span>
-            </div>
+				<?php if (!isset($_SESSION['sinhvien'])) : ?>``
+					<a href="#" id="register">Register</a>
+					<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+					<div id="id01" class="modal">
+
+						<form class="modal-content animate" action="<?php echo (helper::url('sinhvienController', 'login')) ?>" method="POST">
+							<div class="imgcontainer">
+								<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+							</div>
+
+							<div class="container">
+								<div class="group-ip">
+									<label for="uname"><b>Username</b></label>
+									<input type="text" placeholder="Enter Username" name="uname" required>
+								</div>
+								<div class="group-ip">
+									<label for="psw"><b>Password</b></label>
+									<input type="password" placeholder="Enter Password" name="psw" required>
+								</div>
+								<input id="login" type="submit" value="Login" name="login">
+							</div>
+
+							<div class="cancel-container" style="background-color:#f1f1f1">
+								<button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+							</div>
+						</form>
+					</div>
+					<span class="flag"></span>
+				<?php else : ?>
+				<a href="<?php helper::url('sinhvienController','logout')?>"><i class="fas fa-sign-out-alt"></i></a>
+				<?php endif ?>
+			</div>
         </header>
         <main>
             <h1 id="search_key"><?php echo ($_GET['searchName']) ?><span> (<?php echo $this->soluong ?> results)</span></h1>
@@ -205,8 +383,8 @@
                     <?php foreach ($this->listgv as $gv) : ?>
                         <div class="home_data">
                             <div class="info">
-                                <a href=""><img width="314px" src="<?php echo $gv->avatar ?>" alt=""></a>
-                                <a href=""><?php echo $gv->hoten ?></a>
+                            <a href="<?php echo "?controllerName=giangvienController&action=detail&id=$gv->id" ?>"><img width="314px" src="<?php echo $gv->avatar ?>" alt=""></a>
+							<a href="<?php echo "?controllerName=giangvienController&action=detail&id=$gv->id" ?>"><?php echo $gv->hoten ?></a>
                                 <p class="totalLike">
                                     <?php echo $gv->solike ?>
                                     <i class="fas fa-heart"></i>
@@ -232,7 +410,22 @@
             </div>
         </footer>
     </div>
-    <script src="../asset/js.js"></script>
+    <script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function(event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+		//
+		var register = document.querySelector('#register');
+		register.onclick = function(){
+			window.alert('Sử dụng mã sinh viên của bạn để đăng nhập !')
+        }
+        </script>
 </body>
 
 </html>

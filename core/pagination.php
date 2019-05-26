@@ -23,7 +23,7 @@ class pagination {
 		// Loop page
 		if($this->totalPage == 1){
 			return $html = '';
-		}
+		}	
 		for ($i = 1; $i <= $this->totalPage; $i++){
 			if ($this->currentPage == $i){
 				$html .= '<li><span>'.$i.'</span></li>';
